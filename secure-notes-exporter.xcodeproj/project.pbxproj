@@ -10,6 +10,7 @@
 		7BE2E320191D197C0019172B /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BE2E31F191D197C0019172B /* CoreFoundation.framework */; };
 		7BE2E323191D197C0019172B /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 7BE2E322191D197C0019172B /* main.c */; };
 		7BE2E325191D197C0019172B /* secure_notes_exporter.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7BE2E324191D197C0019172B /* secure_notes_exporter.1 */; };
+		7BE2E32C191D1B6A0019172B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BE2E32B191D1B6A0019172B /* Security.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,6 +31,7 @@
 		7BE2E31F191D197C0019172B /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		7BE2E322191D197C0019172B /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		7BE2E324191D197C0019172B /* secure_notes_exporter.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = secure_notes_exporter.1; sourceTree = "<group>"; };
+		7BE2E32B191D1B6A0019172B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BE2E32C191D1B6A0019172B /* Security.framework in Frameworks */,
 				7BE2E320191D197C0019172B /* CoreFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,6 +67,7 @@
 		7BE2E31E191D197C0019172B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7BE2E32B191D1B6A0019172B /* Security.framework */,
 				7BE2E31F191D197C0019172B /* CoreFoundation.framework */,
 			);
 			name = Frameworks;
