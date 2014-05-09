@@ -7,12 +7,29 @@
 //
 
 #include <CoreFoundation/CoreFoundation.h>
+#include <Security/Security.h>
 
 int main(int argc, const char * argv[])
 {
+    // create query
+    CFStringRef keys[] = { kSecReturnAttributes, kSecMatchLimit, kSecClass };
+    CFTypeRef values[] = { kCFBooleanTrue, kSecMatchLimitAll, kSecClassGenericPassword };
+    CFDictionaryRef query = CFDictionaryCreate(
+        kCFAllocatorDefault,
+        (const void **)keys,
+        (const void **)values,
+        3,
+        &kCFTypeDictionaryKeyCallBacks,
+        &kCFTypeDictionaryValueCallBacks
+    );
 
-    // insert code here...
-    CFShow(CFSTR("Hello, World!\n"));
+    // get search results
+    CFArrayRef items = nil;
+    OSStatus status = SecItemCopyMatching(query, (CFTypeRef *)&items);
+    CFRelease(query);
+    assert(status == 0);
+    CFShow(items);
+    CFRelease(items);
     return 0;
 }
 
