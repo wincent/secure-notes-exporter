@@ -12,7 +12,6 @@
 		7BE2E325191D197C0019172B /* secure_notes_exporter.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7BE2E324191D197C0019172B /* secure_notes_exporter.1 */; };
 		7BE2E32C191D1B6A0019172B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BE2E32B191D1B6A0019172B /* Security.framework */; };
 		7BE2E32E191D31C70019172B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BE2E32D191D31C70019172B /* Foundation.framework */; };
-		7BE2E330191D34B50019172B /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BE2E32F191D34B50019172B /* AppKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,7 +42,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7BE2E330191D34B50019172B /* AppKit.framework in Frameworks */,
 				7BE2E32E191D31C70019172B /* Foundation.framework in Frameworks */,
 				7BE2E32C191D1B6A0019172B /* Security.framework in Frameworks */,
 				7BE2E320191D197C0019172B /* CoreFoundation.framework in Frameworks */,

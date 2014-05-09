@@ -8,7 +8,7 @@
 
 #include <CoreFoundation/CoreFoundation.h>
 #include <Security/Security.h>
-#import <AppKit/AppKit.h>
+#import <Foundation/Foundation.h>
 
 void printItem(const void *value, void *context) {
     CFDictionaryRef item = value;
@@ -43,10 +43,18 @@ void printItem(const void *value, void *context) {
         NULL
     );
 
-    NSData *RTFData = [[NSData alloc] initWithBytes:passwordData length:passwordLength];
-    NSLog(@"%@", RTFData);
-    NSAttributedString *RTFString = [[NSAttributedString alloc] initWithRTF:RTFData documentAttributes:NULL];
-    NSLog(@"%@", RTFString);
+    NSData *propertyListData = [[NSData alloc] initWithBytes:passwordData length:passwordLength];
+    NSError *error;
+    NSDictionary *propertyList = [NSPropertyListSerialization propertyListWithData:propertyListData
+                                                                options:NSPropertyListImmutable
+                                                                 format:NULL
+                                                                  error:&error];
+    if (!propertyList) {
+        NSLog(@"%@", error);
+    } else {
+        CFShow(serviceName);
+        NSLog(@"%@", [propertyList objectForKey:@"NOTE"]);
+    }
 }
 
 int main(int argc, const char * argv[])
