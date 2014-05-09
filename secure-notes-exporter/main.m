@@ -1,5 +1,5 @@
 //
-//  main.c
+//  main.m
 //  secure-notes-exporter
 //
 //  Created by Greg Hurrell on 5/9/14.

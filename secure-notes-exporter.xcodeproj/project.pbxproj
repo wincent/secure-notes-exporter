@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		7BE2E320191D197C0019172B /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BE2E31F191D197C0019172B /* CoreFoundation.framework */; };
-		7BE2E323191D197C0019172B /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 7BE2E322191D197C0019172B /* main.c */; };
+		7BE2E323191D197C0019172B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BE2E322191D197C0019172B /* main.m */; };
 		7BE2E325191D197C0019172B /* secure_notes_exporter.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7BE2E324191D197C0019172B /* secure_notes_exporter.1 */; };
 		7BE2E32C191D1B6A0019172B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BE2E32B191D1B6A0019172B /* Security.framework */; };
+		7BE2E32E191D31C70019172B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BE2E32D191D31C70019172B /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,9 +30,10 @@
 /* Begin PBXFileReference section */
 		7BE2E31C191D197C0019172B /* secure-notes-exporter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "secure-notes-exporter"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BE2E31F191D197C0019172B /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		7BE2E322191D197C0019172B /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		7BE2E322191D197C0019172B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7BE2E324191D197C0019172B /* secure_notes_exporter.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = secure_notes_exporter.1; sourceTree = "<group>"; };
 		7BE2E32B191D1B6A0019172B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7BE2E32D191D31C70019172B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BE2E32E191D31C70019172B /* Foundation.framework in Frameworks */,
 				7BE2E32C191D1B6A0019172B /* Security.framework in Frameworks */,
 				7BE2E320191D197C0019172B /* CoreFoundation.framework in Frameworks */,
 			);
@@ -67,6 +70,7 @@
 		7BE2E31E191D197C0019172B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7BE2E32D191D31C70019172B /* Foundation.framework */,
 				7BE2E32B191D1B6A0019172B /* Security.framework */,
 				7BE2E31F191D197C0019172B /* CoreFoundation.framework */,
 			);
@@ -76,7 +80,7 @@
 		7BE2E321191D197C0019172B /* secure-notes-exporter */ = {
 			isa = PBXGroup;
 			children = (
-				7BE2E322191D197C0019172B /* main.c */,
+				7BE2E322191D197C0019172B /* main.m */,
 				7BE2E324191D197C0019172B /* secure_notes_exporter.1 */,
 			);
 			path = "secure-notes-exporter";
@@ -133,7 +137,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7BE2E323191D197C0019172B /* main.c in Sources */,
+				7BE2E323191D197C0019172B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
