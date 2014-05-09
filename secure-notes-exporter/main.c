@@ -10,15 +10,39 @@
 #include <Security/Security.h>
 
 void printItem(const void *value, void *context) {
-    CFDictionaryRef dictionary = value;
-    CFNumberRef itemType = CFDictionaryGetValue(dictionary, kSecAttrType);
+    CFDictionaryRef item = value;
+    CFNumberRef itemType = CFDictionaryGetValue(item, kSecAttrType);
     CFNumberRef noteType = (CFNumberRef)context;
     if (!itemType || !CFEqual(itemType, noteType)) {
         // not a note
         return;
     }
 
-    CFShow(noteType);
+    CFStringRef serviceName = CFDictionaryGetValue(item, kSecAttrService);
+    assert(serviceName);
+    char *serviceNamePtr = (char *)CFStringGetCStringPtr(serviceName, kCFStringEncodingUTF8);
+    if (!serviceNamePtr) {
+        CFIndex serviceNameLength = CFStringGetLength(serviceName);
+        CFIndex maxServiceNameLength = CFStringGetMaximumSizeForEncoding(serviceNameLength, kCFStringEncodingUTF8);
+        serviceNamePtr = malloc(maxServiceNameLength);
+        assert(serviceNamePtr);
+        assert(CFStringGetCString(serviceName, serviceNamePtr, maxServiceNameLength, kCFStringEncodingUTF8));
+    }
+
+    UInt32 passwordLength;
+    void *passwordData;
+    OSStatus status = SecKeychainFindGenericPassword(
+        NULL,
+        (UInt32)strlen(serviceNamePtr),
+        serviceNamePtr,
+        0,
+        NULL,
+        &passwordLength,
+        &passwordData,
+        NULL
+    );
+
+    printf("Got %d bytes\n", passwordLength);
 }
 
 int main(int argc, const char * argv[])
@@ -36,7 +60,7 @@ int main(int argc, const char * argv[])
     );
 
     // get search results
-    CFArrayRef items = nil;
+    CFArrayRef items = NULL;
     OSStatus status = SecItemCopyMatching(query, (CFTypeRef *)&items);
     CFRelease(query);
     assert(status == 0);
