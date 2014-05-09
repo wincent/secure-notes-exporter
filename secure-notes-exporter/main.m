@@ -8,6 +8,7 @@
 
 #include <CoreFoundation/CoreFoundation.h>
 #include <Security/Security.h>
+#import <AppKit/AppKit.h>
 
 void printItem(const void *value, void *context) {
     CFDictionaryRef item = value;
@@ -42,7 +43,10 @@ void printItem(const void *value, void *context) {
         NULL
     );
 
-    printf("Got %d bytes\n", passwordLength);
+    NSData *RTFData = [[NSData alloc] initWithBytes:passwordData length:passwordLength];
+    NSLog(@"%@", RTFData);
+    NSAttributedString *RTFString = [[NSAttributedString alloc] initWithRTF:RTFData documentAttributes:NULL];
+    NSLog(@"%@", RTFString);
 }
 
 int main(int argc, const char * argv[])

@@ -12,6 +12,7 @@
 		7BE2E325191D197C0019172B /* secure_notes_exporter.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7BE2E324191D197C0019172B /* secure_notes_exporter.1 */; };
 		7BE2E32C191D1B6A0019172B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BE2E32B191D1B6A0019172B /* Security.framework */; };
 		7BE2E32E191D31C70019172B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BE2E32D191D31C70019172B /* Foundation.framework */; };
+		7BE2E330191D34B50019172B /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BE2E32F191D34B50019172B /* AppKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,7 @@
 		7BE2E324191D197C0019172B /* secure_notes_exporter.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = secure_notes_exporter.1; sourceTree = "<group>"; };
 		7BE2E32B191D1B6A0019172B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7BE2E32D191D31C70019172B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7BE2E32F191D34B50019172B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BE2E330191D34B50019172B /* AppKit.framework in Frameworks */,
 				7BE2E32E191D31C70019172B /* Foundation.framework in Frameworks */,
 				7BE2E32C191D1B6A0019172B /* Security.framework in Frameworks */,
 				7BE2E320191D197C0019172B /* CoreFoundation.framework in Frameworks */,
@@ -70,6 +73,7 @@
 		7BE2E31E191D197C0019172B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7BE2E32F191D34B50019172B /* AppKit.framework */,
 				7BE2E32D191D31C70019172B /* Foundation.framework */,
 				7BE2E32B191D1B6A0019172B /* Security.framework */,
 				7BE2E31F191D197C0019172B /* CoreFoundation.framework */,
