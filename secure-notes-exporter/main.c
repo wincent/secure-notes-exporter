@@ -90,13 +90,20 @@ void printItem(const void *value, void *context) {
     );
     CFRelease(data);
 
+    CFStringRef note;
     if (!propertyList) {
-        printf("error\n");
+        fprintf(stderr, "ERROR: failed to load property list\n");
+        return;
+    } else if (CFGetTypeID(propertyList) == CFDictionaryGetTypeID()) {
+        note = CFDictionaryGetValue(propertyList, CFSTR("NOTE"));
+    } else if (CFGetTypeID(propertyList) == CFStringGetTypeID()) {
+        note = propertyList;
     } else {
-        CFStringRef note = CFDictionaryGetValue(propertyList, CFSTR("NOTE"));
-        printCSV(serviceName, note);
-        CFRelease(propertyList);
+        fprintf(stderr, "ERROR: not expected type\n");
+        return;
     }
+    printCSV(serviceName, note);
+    CFRelease(propertyList);
 }
 
 int main(int argc, const char * argv[])
