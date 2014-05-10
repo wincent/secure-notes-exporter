@@ -9,6 +9,53 @@
 #include <CoreFoundation/CoreFoundation.h>
 #include <Security/Security.h>
 
+CFStringRef createEscapedString(CFStringRef string) {
+    CFMutableStringRef mutable = CFStringCreateMutableCopy(kCFAllocatorDefault, 0, string);
+    CFStringFindAndReplace(
+        mutable,
+        CFSTR("\""),
+        CFSTR("\"\""),
+        CFRangeMake(0, CFStringGetLength(mutable)),
+        0
+    );
+    return mutable;
+}
+
+const char *createCStringFromString(CFStringRef string) {
+    CFIndex stringLength = CFStringGetLength(string);
+    CFIndex maxStringLength = CFStringGetMaximumSizeForEncoding(stringLength, kCFStringEncodingUTF8);
+    const char *ptr = malloc(maxStringLength);
+    assert(ptr);
+    assert(CFStringGetCString(string, (char *)ptr, maxStringLength, kCFStringEncodingUTF8));
+    return ptr;
+}
+
+void printHeader(void) {
+    printf("url,name,extra,group\n");
+}
+
+void printCSV(CFStringRef serviceName, CFStringRef note) {
+    const char *quote = "\"";
+    CFStringRef escapedService = createEscapedString(serviceName);
+    CFStringRef escapedNote = createEscapedString(note);
+    const char *name = createCStringFromString(escapedService);
+    const char *extra = createCStringFromString(escapedNote);
+
+    printf(
+        "http://sn,"
+        "%s%s%s,"
+        "%s%s%s,"
+        "%sSecure Notes%s\n",
+        quote, name, quote,
+        quote, extra, quote,
+        quote, quote
+    );
+    CFRelease(escapedService);
+    CFRelease(escapedNote);
+    free((void *)name);
+    free((void *)extra);
+}
+
 void printItem(const void *value, void *context) {
     CFDictionaryRef item = value;
     CFNumberRef itemType = CFDictionaryGetValue(item, kSecAttrType);
@@ -20,14 +67,7 @@ void printItem(const void *value, void *context) {
 
     CFStringRef serviceName = CFDictionaryGetValue(item, kSecAttrService);
     assert(serviceName);
-    char *serviceNamePtr = (char *)CFStringGetCStringPtr(serviceName, kCFStringEncodingUTF8);
-    if (!serviceNamePtr) {
-        CFIndex serviceNameLength = CFStringGetLength(serviceName);
-        CFIndex maxServiceNameLength = CFStringGetMaximumSizeForEncoding(serviceNameLength, kCFStringEncodingUTF8);
-        serviceNamePtr = malloc(maxServiceNameLength);
-        assert(serviceNamePtr);
-        assert(CFStringGetCString(serviceName, serviceNamePtr, maxServiceNameLength, kCFStringEncodingUTF8));
-    }
+    const char *serviceNamePtr = createCStringFromString(serviceName);
 
     UInt32 passwordLength;
     void *passwordData;
@@ -42,6 +82,7 @@ void printItem(const void *value, void *context) {
         NULL
     );
     assert(status == 0);
+    free((void *)serviceNamePtr);
 
     CFDataRef data = CFDataCreate(kCFAllocatorDefault, passwordData, passwordLength);
     CFPropertyListRef propertyList = CFPropertyListCreateWithData(
@@ -52,7 +93,8 @@ void printItem(const void *value, void *context) {
     if (!propertyList) {
         printf("error\n");
     } else {
-        CFShow(CFDictionaryGetValue(propertyList, CFSTR("NOTE")));
+        CFStringRef note = CFDictionaryGetValue(propertyList, CFSTR("NOTE"));
+        printCSV(serviceName, note);
         CFRelease(propertyList);
     }
 }
@@ -81,6 +123,7 @@ int main(int argc, const char * argv[])
     CFRange range = CFRangeMake(0, CFArrayGetCount(items));
     SInt32 note = 'note';
     CFNumberRef noteRef = CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt32Type, &note);
+    printHeader();
     CFArrayApplyFunction(items, range, printItem, (void *)noteRef);
     CFRelease(noteRef);
     CFRelease(items);
