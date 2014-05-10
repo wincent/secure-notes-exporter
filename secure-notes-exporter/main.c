@@ -8,7 +8,6 @@
 
 #include <CoreFoundation/CoreFoundation.h>
 #include <Security/Security.h>
-#import <Foundation/Foundation.h>
 
 void printItem(const void *value, void *context) {
     CFDictionaryRef item = value;
@@ -42,18 +41,19 @@ void printItem(const void *value, void *context) {
         &passwordData,
         NULL
     );
+    assert(status == 0);
 
-    NSData *propertyListData = [[NSData alloc] initWithBytes:passwordData length:passwordLength];
-    NSError *error;
-    NSDictionary *propertyList = [NSPropertyListSerialization propertyListWithData:propertyListData
-                                                                options:NSPropertyListImmutable
-                                                                 format:NULL
-                                                                  error:&error];
+    CFDataRef data = CFDataCreate(kCFAllocatorDefault, passwordData, passwordLength);
+    CFPropertyListRef propertyList = CFPropertyListCreateWithData(
+        kCFAllocatorDefault, data, kCFPropertyListImmutable, NULL, NULL
+    );
+    CFRelease(data);
+
     if (!propertyList) {
-        NSLog(@"%@", error);
+        printf("error\n");
     } else {
-        CFShow(serviceName);
-        NSLog(@"%@", [propertyList objectForKey:@"NOTE"]);
+        CFShow(CFDictionaryGetValue(propertyList, CFSTR("NOTE")));
+        CFRelease(propertyList);
     }
 }
 
