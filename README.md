@@ -5,12 +5,10 @@ imported into [LastPass](https://lastpass.com/).
 
 ## Usage
 
-1. Clone the repo
-2. Open the Xcode project file
-3. Build
-4. Install built binary somewhere in your `PATH`
-5. Run the binary; the decrypted contents of the notes will be printed to
-   standard out:
+1. Clone the repo.
+2. Open the Xcode project file and Build (alternatively, just run `make` from the terminal).
+3. Install built binary somewhere in your `PATH`.
+4. Run the binary; the decrypted contents of the notes will be printed to standard out:
 
 ```bash
 secure-notes-exporter > ~/notes.csv
