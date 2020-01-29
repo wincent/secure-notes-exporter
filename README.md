@@ -1,7 +1,8 @@
 # secure-notes-exporter
 
 Exports the "Secure Notes" from your OS X keychain into a CSV file that can be
-imported into [LastPass](https://lastpass.com/).
+imported into [1Password](https://agilebits.com/onepassword) or
+[LastPass](https://lastpass.com/).
 
 ## Usage
 
@@ -16,12 +17,11 @@ secure-notes-exporter > ~/notes.csv
 
 You will have to click the "Allow" (or "Always Allow") button in the dialog that
 pops up for each "Secure Note" in your keychain; it's a little painful, but
-still better than manually copying and pasting each individual item into
-LastPass.
+still better than manually copying and pasting each individual item.
 
 **NOTE:** The generated CSV contains the decrypted plain-text of your "Secure
 Notes", so make sure you keep it somewhere safe until you import it into
-LastPass, and securely delete it immediately afterwards.
+1Password or LastPass, and securely delete it immediately afterwards.
 
 ## Importing the generated CSV into LastPass
 
@@ -43,7 +43,7 @@ For many years, I used the OS X keychain to store all of my passwords, and
 additionally information that was sensitive but wasn't a password. I did this
 because I wanted to avoid vendor lock-in with a small company such as
 [AgileBits](https://agilebits.com/) (makers of
-[1Password](https://agilebits.com/onepassword/mac)), which at the time was
+[1Password](https://agilebits.com/onepassword)), which at the time was
 completely unproven (the [first alphas](https://agilebits.com/onepassword/mac/release_notes)
 of 1Password came out in 2006).
 
